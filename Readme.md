@@ -1,1 +1,5 @@
-##This is a kind of sub project, which will be later merged with askmebot
+### This is a kind of sub project, which will be later merged with askmebot
+
+
+### Minimum requirement for this project
+1. LLM Model
