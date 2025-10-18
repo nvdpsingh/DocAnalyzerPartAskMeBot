@@ -12,11 +12,9 @@ class DocumentPortalException(Exception):
         self.traceback_str = "".join(traceback.format_exception(*error_details.exc_info()))
         
     def __str__(self):
-        return f"""
-            Error in [{self.file_name}] at line [{self.lineno}]
-            Message: {self.error_message}
-            Traceback: {self.traceback_str}
-            """
+        return f"""Error in [{self.file_name}] at line [{self.lineno}]
+Message: {self.error_message}
+Traceback: {self.traceback_str}"""
 
 
 if __name__ == "__main__":
@@ -28,5 +26,6 @@ if __name__ == "__main__":
 
     except Exception as e:
         app_exc = DocumentPortalException(e,sys)
-        logger.error(app_exc)
+        # Convert to string explicitly - structlog won't call __str__ automatically
+        logger.error(str(app_exc))
         raise app_exc
