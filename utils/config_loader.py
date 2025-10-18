@@ -7,4 +7,3 @@ def load_config(config_path:str = "config/config.yaml"):
 
 if __name__ == "__main__":
     config = load_config()
-    print(config)
