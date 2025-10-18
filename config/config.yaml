@@ -11,9 +11,9 @@ retriever:
 llm:
   groq:
     provider: "groq"
-    model_name: "gpt-oss-20b"
+    model_name: "openai/gpt-oss-20b"
     temperature: 0.0
     max_output_tokens: 2000
 
-    
+
   
