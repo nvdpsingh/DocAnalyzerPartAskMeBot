@@ -12,7 +12,23 @@ class DocumentAnalyzer:
     automatically logs all actions and supports session-based operations.
     """
     def __init__(self,session_id:str=None):
-        pass
+        self.log = CustomLogger().get_logger(__name__)
+        try:
+            self.loader=ModelLoader()
+            self.llm=self.loader.load_llm()
+            
+            # Prepare parsers
+            self.parser = JsonOutputParser(pydantic_object=Metadata)
+            self.fixing_parser = OutputFixingParser.from_llm(parser=self.parser, llm=self.llm)
+            
+            self.prompt = prompt
+            
+            self.log.info("DocumentAnalyzer initialized successfully")
+            
+            
+        except Exception as e:
+            self.log.error(f"Error initializing DocumentAnalyzer: {e}")
+            raise DocumentPortalException("Error in DocumentAnalyzer initialization", sys)
 
     
     def analyze_document(self):
